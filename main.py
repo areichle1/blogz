@@ -7,10 +7,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://build-a-blog:andreareic
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 app.secret_key = 'andreareichle'
-#login page is now main blog page
-#register is now newpost page
-#email is now blogtitle
-#password is now blogbody
+#password is 'andreareichle'
 
 class Blog(db.Model):
 
@@ -20,10 +17,7 @@ class Blog(db.Model):
 
     def __init__(self, title, body):
         self.title = title
-        #self.completed = False
         self.body = body
-
-#changed register to newpost
 
 @app.route('/blog')
 def blog():
@@ -40,15 +34,17 @@ def blog():
 def new_post():
     if request.method == 'POST':
         blog_title = request.form['blog-title']
-        blog_body = request.form['blog-entry']
+        blog_body = request.form['blog-body']
         title_error = ''
         body_error = ''
 
+        #check if input spots are empty
         if not blog_title:
-            title_error = "Please enter a blog title"
+            title_error = 'Please fill in the title'
         if not blog_body:
-            body_error = "Please enter a blog entry"
+            body_error = 'Please fill in the body'
 
+        #adds entry to database, displays new post page
         if not body_error and not title_error:
             new_entry = Blog(blog_title, blog_body)     
             db.session.add(new_entry)
@@ -59,7 +55,6 @@ def new_post():
                 blog_title=blog_title, blog_body=blog_body)
     
     return render_template('newpost.html')
-#title='New Entry'
 
 @app.route('/')
 def index():
