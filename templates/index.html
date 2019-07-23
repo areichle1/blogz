@@ -1,0 +1,18 @@
+<!--displays a list of all the usernames on the site-->
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Blog Users!</h1>
+    <style>
+        h1 {
+            text-align: left;
+        }
+    </style>
+
+    {% for user in owner %}
+    <ul>
+        <li><a href='./blog?user={{ user.id }}'>{{ user.username }}</a></li>
+    </ul>
+    {% endfor %}
+
+{% endblock %}

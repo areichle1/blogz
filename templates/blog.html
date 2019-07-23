@@ -1,24 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Build-A-Blog</h1>
+    <h1>Blog Posts!</h1>
     <style>
         h1 {
-            text-align: center;
+            text-align: left;
         }
     </style>
 
-    <!--displays main page with blog entries showing.-->
-    {% if posts|length == 0 %}
-    <h3>No blog posts yet.</h3>
-    {% else %}
-
+    <!--displays main page with all blog entries showing.-->
     {% for post in posts %}
 
-    <a href='/blog?id={{post.id}}'><h2>{{post.title}}</h2></a>
-    <p>{{post.body}}</p>
+    <a href='/blog?id={{post.id}}'><h2>{{ post.title }}</h2></a>
+    <p>{{ post.body }}</p>
+    <p>Posted on: {{ post.pub_date }}</p>
+    <p style='font-style: italic;'>written by<a href='./blog?user={{ post.owner.id }}'> {{ post.owner.username }}</a></p>
 
     {% endfor %}
-    {% endif %}
 
 {% endblock %}

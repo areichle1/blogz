@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>{{title}}</title>
+        <title>{{ title }}</title>
         <style>
             .error {
                 color: red;
@@ -10,9 +10,24 @@
     </head>
 <body>
     
-    <nav>
-        <a href='/blog'>Main Blog Page</a>
-        <a href='/newpost'>Add a blog entry</a>
+    <nav id='left_nav'>
+        <a href='/'>Home</a>
+        <a href='/blog'>All Posts</a>
+        <a href='/newpost'>New Post</a>
+        <style>
+            #left_nav {
+                text-align: left;
+            }
+        </style>
+    </nav>
+    <nav id='right_nav'>
+        <a href='/login'>Login</a>
+        <a href='/logout'>Logout</a>
+        <style>
+            #right_nav {
+                text-align: right;
+            }
+        </style>
     </nav>
 
     {% block content %}

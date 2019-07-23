@@ -2,12 +2,14 @@
 
 {% block content %}
     <!--displays a single blog entry-->
-    <h1>{{post.title}}</h1>
+    <h1>{{ post.title }}</h1>
     <style>
         h1 {
-            text-align: center;
+            text-align: left;
         }
     </style>
-    <p>{{post.body}}</p>
+    <p>{{ post.body }}</p>
+    <p>Posted on: {{ post.pub_date }}</p>
+    <p style='font-style: italic;'>written by <a href='/blog?user={{ post.owner.id }}'> {{ post.owner.username }}</a></p>
                
 {% endblock %}

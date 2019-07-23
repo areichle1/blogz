@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% for entry in entries %}
+
+        <a href='./blog?id={{ entry.id }}'><h2>{{ entry.title }}</h2></a>
+        <p>{{ entry.body }}</p>
+        <p>Posted on: {{ entry.pub_date }}</p>
+        <p style='font-style: italic;'>written by <a href='/blog?user={{ entry.owner_id }}'>{{ entry.owner.username }}</a></p>
+
+    {% endfor %}
+
+{% endblock %}
